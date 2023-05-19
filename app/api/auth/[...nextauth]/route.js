@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { handleAuth } from "@auth0/nextjs-auth0";
 
 import User from "@models/user";
 import { connectToDB } from "@utils/database";
@@ -41,6 +42,14 @@ const handler = NextAuth({
         return false;
       }
     },
+  },
+});
+
+export default handleAuth({
+  async login(request, response) {
+    await handleLogin(request, response, {
+      returnTo: "/",
+    });
   },
 });
 
