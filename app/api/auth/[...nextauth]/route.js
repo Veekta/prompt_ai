@@ -45,12 +45,4 @@ const handler = NextAuth({
   },
 });
 
-export default handleAuth({
-  async login(request, response) {
-    await handleLogin(request, response, {
-      returnTo: "/",
-    });
-  },
-});
-
 export { handler as GET, handler as POST };
